@@ -1,0 +1,32 @@
+{
+  "cwd": "/Users/nathalia/Desktop/frontend mentor/projects/vanilla-projects/musicapp",
+  "type": [
+    "web",
+    "cordova"
+  ],
+  "name": "musicapp",
+  "pkg": "io.musicapp.app",
+  "framework": "core",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen"
+    ]
+  },
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
