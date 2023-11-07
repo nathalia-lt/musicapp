@@ -1,0 +1,12 @@
+/* iOS Cordova Tweak */
+.device-cordova.device-ios {
+  height: 100vh;
+}
+
+/* Your app custom styles here */
+:root{
+  --primary-color: white;
+  --accent-color: blueviolet;
+  --middle-color: grey;
+  --f7-navbar-large-title-text-color: var(--accent-color);
+}
