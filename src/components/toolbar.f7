@@ -1,0 +1,37 @@
+<template>
+  <!-- Toolbar-->
+    <div class="toolbar toolbar-bottom">
+      <div class="toolbar-inner">
+        <a href="/" class="tabbar-link link">
+          <i class="icon f7-icons">house</i>
+          <span class="tabbar-label">Home</span>
+        </a>
+        <a href="/search/" class="tabbar-link link">
+          <i class="icon f7-icons">search</i>
+          <span class="tabbar-label">Search</span>
+        </a>
+        <a href="/favorites/" class="tabbar-link link">
+          <i class="icon f7-icons">heart</i>
+          <span class="tabbar-label">Favorites</span>
+        </a>
+      </div>
+    </div>
+</template>
+
+<style>
+    .toolbar{
+        height: 80px;
+    }
+
+    .tabbar-link {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+<script>
+  // props e context
+  export default (props, {}) => {
+    return $render;
+  };
+</script>
