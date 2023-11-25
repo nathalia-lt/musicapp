@@ -1,11 +1,31 @@
 
 <template>
   <div id="app">
-
     <!-- Your main view, should have "view-main" class -->
     <!-- aqui e que muda a pagina, e uma single page app. vou colocar o conteudo da pagina -->
-    
     <div class="view view-main view-init safe-areas" data-url="/"></div>
+
+    <!-- pop up album -->
+    <div class="popup" id="album-popup">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+              <div class="title">Popup</div>
+              <div class="right">
+                <a href="#" class="link popup-close">Close</a>
+              </div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="block">
+              <p>${album.value.name}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -13,10 +33,9 @@
   // props e o que vem do pai ou da rota
   // objeto "context" => são várias funções do framework7 para facilitar a nossa vida
   
-  export default (props, {$f7, $update, $el}) => {
-    
-    // const btn = $el('#id')
-
+  // const btn = $el('#id')
+  export default (props, {$f7, $update, $el, $store}) => {
+    const album =$store.getters.getAlbum;
     return $render;
   }
 </script>

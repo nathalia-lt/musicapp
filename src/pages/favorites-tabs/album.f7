@@ -1,0 +1,48 @@
+
+<template>
+    <div class="album-container">
+        <!-- para abrir o popup eu link atraves do data-popup -->
+        <a href="#" class="popup-open" data-popup="#album-popup" @click=${handleClick}>
+        <img src="${img}" class="album-img"  data-popup="#album-popup"/>
+        </a>
+        <div>
+                <p>${name}</p>
+            <p>${artist}</p>
+        </div>
+        <p class="minutes">${min}</p>
+    </div>
+</template>
+
+<style>
+    .album-container{
+        margin: 14px 28px;
+        display: flex;
+        gap: 20px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid gray;
+    }
+/* flex 1 para ocupar todo o espaco */
+    .minutes{
+        flex: 2;
+        text-align: right;
+    }
+
+    .album-img{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<script>
+// vou puxar o store pq na hora do handle click
+    export default (props, {$f7, $update, $el, $store}) => {
+
+    const { id, name, artist, img, min } = props.album
+    console.log(props)
+
+    const handleClick = () => {
+        $store.dispatch('setAlbum', props.album)
+    }
+        return $render;
+    }
+</script>

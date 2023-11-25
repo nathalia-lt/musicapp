@@ -9,7 +9,7 @@ import NotFoundPage from '../pages/404.f7';
 var routes = [
   {
     path: '/',
-    component: HomePage,
+    component: FavoritesPage,//HomePage,
   },
   {
     path: '/search/',

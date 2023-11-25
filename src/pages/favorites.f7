@@ -1,11 +1,20 @@
 <template>
   <div class="page" data-name="favorites">
+    <${Toolbar}/>
     <div class="navbar navbar-large">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="left">
           <a href="/" class="link back" data-panel="left">
             <i class="icon f7-icons">arrow_left</i>
+          </a>
+
+          <a
+            href="#"
+            class="link icon-only panel-open avatar"
+            data-panel="left"
+          >
+            <img src="../assets/avatar.png" alt="" />
           </a>
         </div>
         <div class="right">
@@ -17,29 +26,47 @@
         <div class="title-large">
           <div class="title-large-text favorite-title">Favorites</div>
         </div>
+        
+      </div>
+      
+    </div>
+
+    <!-- testando navbar especifica para os favoritos -->
+    <div class="toolbar toolbar-top tabbar">
+      <div class="toolbar-inner">
+        <a href="#tab-1" class="tab-link tab-link-active">Albuns</a>
+        <a href="#tab-2" class="tab-link">Artists</a>
+        <a href="#tab-3" class="tab-link">Audiobooks</a>
       </div>
     </div>
-    <div class="block"><a class="button button-fill" @click=${handleClick}>link </a></div>
+    <div class="tabs">
+      <div id="tab-1" class="page-content tab tab-active">
+        <${Albuns}/>
+      </div>
+      <div id="tab-2" class="page-content tab">
+        <div class="block">
+          <p>Tab 2 content</p>
+        </div>
+      </div>
+      <div id="tab-3" class="page-content tab">
+        <div class="block">
+          <p>Tab 3 content</p>
+        </div>
+      </div>
+    </div>      
+
   </div>
 </template>
 <style>
-  .favorite-title {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 24px;
-    color: blueviolet;
-    text-align: center;
-  }
-  .button{
-    margin-top: 100px;
-  }
+
 </style>
 <script>
+  import Toolbar from "../components/toolbar.f7";
+  import Albuns from "./favorites-tabs/albuns.f7"
+
   //esse render pertence ao framework. vai ler o que ta dentro do template
 
   export default () => {
-    const handleClick = () => {
-      console.log("clicked");
-    };
     return $render;
   };
 </script>
