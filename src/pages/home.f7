@@ -1,7 +1,7 @@
 <template>
   <div class="page" data-name="home">
     <!-- Top Navbar -->
-    <div class="navbar navbar-large">
+    <div class="navbar">
       <div class="navbar-bg"></div>
       <div class="navbar-inner">
         <div class="left nav-wrapper">
@@ -59,19 +59,27 @@
           </p>
         </video>
         <!-- Fallback content here -->
+        <div class="timer">
+          <div></div>
+          <span aria-label="timer">00:00</span>
+        </div>
         <div class="controls">
-          <button
-            class="play"
-            data-icon="P"
-            aria-label="play pause toggle"
-          ></button>
-          <button class="stop" data-icon="S" aria-label="stop"></button>
-          <div class="timer">
-            <div></div>
-            <span aria-label="timer">00:00</span>
+          <div class="buttons-container">
+            <button class="rwd" aria-label="rewind">
+              <i class="icon f7-icons">backward_fill</i>
+            </button>
+            <button class="play" aria-label="play pause toggle">
+              <i class="pause-icon icon f7-icons ${isPlaying ? '' : 'hidden'}"
+                >pause_circle_fill</i
+              >
+              <i class="play-icon icon f7-icons ${isPlaying ? 'hidden' : ''}"
+                >play_circle_fill</i
+              >
+            </button>
+            <button class="fwd" aria-label="fast forward">
+              <i class="icon f7-icons">forward_fill</i>
+            </button>
           </div>
-          <button class="rwd" data-icon="B" aria-label="rewind"></button>
-          <button class="fwd" data-icon="F" aria-label="fast forward"></button>
         </div>
       </div>
     </div>
@@ -93,23 +101,30 @@
   }
 
   .nav-wrapper {
-    padding-top: 30px !important;
+    padding-top: 10px !important;
     gap: 1rem;
   }
 
   .controls {
     visibility: hidden;
     opacity: 0.5;
-    width: 400px;
     border-radius: 10px;
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    margin-left: -200px;
+    left: 8px;
     background-color: black;
     box-shadow: 3px 3px 5px black;
     transition: 1s all;
     display: flex;
+    width: 374px;
+    /* right: 140px; */
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    align-items: center;
   }
 
   .player:hover .controls,
@@ -117,30 +132,31 @@
     opacity: 1;
   }
 
-  button:before {
+  button {
     position: relative;
-    content: attr(data-icon);
-    color: #aaa;
+    /* color: #aaa; */
     text-shadow: 1px 1px 0px black;
+    border-radius: 10px;
+    padding: 4px 8px;
   }
 
   .timer {
-    line-height: 38px;
     font-size: 10px;
     font-family: monospace;
     text-shadow: 1px 1px 0px black;
     color: white;
     flex: 5;
     position: relative;
+    top: -21px;
   }
 
   .timer div {
     position: absolute;
-    background-color: rgb(255 255 255 / 20%);
+    background-color: rgba(255, 255, 255, 0.649);
     left: 0;
     top: 0;
     width: 0;
-    height: 38px;
+    height: 21px;
     z-index: 2;
   }
 
@@ -149,6 +165,11 @@
     z-index: 3;
     left: 19px;
   }
+
+  .hidden {
+    display: none !important;
+  }
+
 </style>
 
 <script>
@@ -167,14 +188,19 @@
       "Song 6",
     ];
 
+    let isPlaying = true;
+
     // Essa funcao, significa esperar outras funcoes montarem para ser realizada.
     //o framework vai esperar os elementos estarem no no Dom para depois realizar as funcoes do onMounted, o equivalent ao useEffect no react.
     $onMounted(() => {
       const media = document.querySelector("video");
       const controls = document.querySelector(".controls");
 
-      const play = document.querySelector(".play");
-      const stop = document.querySelector(".stop");
+      const play = document.querySelector(".play"); //play pause button
+
+      const play_icon = document.querySelector(".play-icon");
+      const pause_icon = document.querySelector(".pause-icon");
+
       const rwd = document.querySelector(".rwd");
       const fwd = document.querySelector(".fwd");
 
@@ -193,15 +219,16 @@
         clearInterval(intervalRwd);
         clearInterval(intervalFwd);
         if (media.paused) {
-          play.setAttribute("data-icon", "u");
+          play_icon.classList.remove("hidden");
+          pause_icon.classList.add("hidden");
           media.play();
         } else {
-          play.setAttribute("data-icon", "P");
+          play_icon.classList.add("hidden");
+          pause_icon.classList.remove("hidden");
           media.pause();
         }
       }
 
-      stop.addEventListener("click", stopMedia);
       media.addEventListener("ended", stopMedia);
 
       function stopMedia() {

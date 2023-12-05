@@ -9,4 +9,5 @@
   --accent-color: blueviolet;
   --middle-color: grey;
   --f7-navbar-large-title-text-color: var(--accent-color);
+  --f7-navbar-height: 66px;
 }
